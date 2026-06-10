@@ -454,6 +454,7 @@
         position: relative;
         overflow: hidden;
       }
+
       .hero-image .img-placeholder {
         height: 100%;
         min-height: 600px;
@@ -1078,13 +1079,12 @@
       }
 
       /* ═══════════════════════════════════════════════════════
-       SECTION 8 — COORDENAÇÃO
+       SECTION 7 — PROFESSOR
     ═══════════════════════════════════════════════════════ */
       #coordenacao {
         padding: var(--section-pad) 0;
         background: var(--petrol-deep);
       }
-
       #coordenacao .section-title {
         color: var(--off-white);
       }
@@ -1092,95 +1092,121 @@
         color: var(--gold);
       }
 
-      .coord-header {
-        margin-bottom: 64px;
-        max-width: 640px;
-      }
-
-      .coord-sub {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.55);
-        font-weight: 300;
-        margin-top: 20px;
-      }
-
-      .coord-grid {
+      .coord-layout {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 32px;
+        gap: 80px;
+        align-items: center;
       }
 
-      .card-coord {
-        display: grid;
-        grid-template-columns: 160px 1fr;
-        gap: 36px;
-        padding: 40px;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        transition: border-color 0.3s;
-      }
-      .card-coord:hover {
-        border-color: rgba(184, 151, 90, 0.25);
+      .coord-text {
+        display: flex;
+        flex-direction: column;
       }
 
-      .coord-photo {
-        width: 160px;
-      }
-      .coord-photo .img-placeholder {
-        width: 160px;
-        height: 200px;
-        background: rgba(255, 255, 255, 0.04);
-        color: rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.08);
-        font-size: 10px;
-      }
-      .coord-photo .img-placeholder svg {
-        opacity: 0.15;
+      .coord-accent-line {
+        width: 3px;
+        height: 60px;
+        background: var(--gold);
+        margin-bottom: 32px;
       }
 
-      .coord-info {
+      .coord-intro {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.85;
+        font-weight: 300;
+        margin: 0 0 40px;
       }
-      .coord-title-label {
+
+      .coord-identity {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 32px;
+      }
+
+      .coord-name {
+        font-family: var(--font-display);
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--off-white);
+        margin-bottom: 4px;
+        line-height: 1.25;
+      }
+
+      .coord-subtitle {
         font-size: 11px;
         font-weight: 600;
         letter-spacing: 0.16em;
         text-transform: uppercase;
         color: var(--gold);
-        margin-bottom: 12px;
+        margin-bottom: 24px;
       }
-      .coord-name {
-        font-family: var(--font-display);
-        font-size: 24px;
-        font-weight: 500;
-        color: var(--off-white);
-        margin-bottom: 16px;
-        line-height: 1.2;
-      }
+
       .coord-credentials {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        margin-bottom: 20px;
+        gap: 10px;
       }
+
       .credential {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
         font-size: 13px;
         color: rgba(255, 255, 255, 0.5);
       }
+
       .credential-dot {
         width: 4px;
         height: 4px;
-        background: var(--gold);
         border-radius: 50%;
+        background: var(--gold);
         flex-shrink: 0;
       }
-      .coord-bio {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.4);
-        line-height: 1.7;
-        font-weight: 300;
+
+      .coord-visual {
+        position: relative;
+      }
+
+      .coord-photo {
+        aspect-ratio: 3 / 4;
+        overflow: hidden;
+        width: 100%;
+      }
+      .coord-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .coord-photo-fade {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 45%;
+        background: linear-gradient(
+          to top,
+          var(--petrol-deep) 0%,
+          transparent 100%
+        );
+        pointer-events: none;
+      }
+
+      .coord-photo-caption {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        right: 24px;
+      }
+      .coord-photo-caption p {
+        font-family: var(--font-accent);
+        font-size: 16px;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.6;
+        margin: 0;
       }
 
       /* ═══════════════════════════════════════════════════════
@@ -1290,6 +1316,8 @@
         line-height: 1;
       }
       .invest-period {
+        width: 50%;
+        text-align: right;
         font-size: 15px;
         color: rgba(255, 255, 255, 0.5);
       }
@@ -1570,7 +1598,7 @@
       }
 
       /* ═══════════════════════════════════════════════════════
-       RESPONSIVE
+       RESPONSIVE — 1024px
     ═══════════════════════════════════════════════════════ */
       @media (max-width: 1024px) {
         .diferenciais-grid {
@@ -1582,49 +1610,82 @@
         .para-quem-grid {
           grid-template-columns: repeat(3, 1fr);
         }
-        .coord-grid {
-          grid-template-columns: 1fr;
-        }
         .turma-grid {
           grid-template-columns: 1fr;
           gap: 40px;
         }
-        .sobre-grid {
-          grid-template-columns: 1fr;
-        }
       }
 
+      /* ═══════════════════════════════════════════════════════
+       RESPONSIVE — 768px (mobile)
+       Estratégia de imagens:
+       - Hero: mantida, é âncora visual da página
+       - Problema (genograma): oculta — a lista de sintomas já comunica
+       - Gessel: oculta — seção já é texto denso, não perde sem foto
+       - Professor: mantida e destacada — humaniza, é essencial
+       - Gessel mobile strip: adicionamos uma faixa de imagem atmosférica
+         entre a seção de diferenciais e Gessel para quebrar o texto
+    ═══════════════════════════════════════════════════════ */
       @media (max-width: 768px) {
+        /* — Nav — */
+        .nav-cta {
+          display: none;
+        }
+        .nav-mobile-cta {
+          display: block;
+        }
+
+        /* — Hero — */
         #hero {
           grid-template-columns: 1fr;
-          grid-template-rows: 30vh auto;
+          grid-template-rows: 44vh auto;
         }
         .hero-image {
-          display: block;
           grid-row: 1;
+          overflow: hidden;
         }
-        .hero-image .img-placeholder {
-          min-height: unset;
+        .hero-image img {
+          width: 100%;
           height: 100%;
+          object-fit: cover;
+          object-position: 30% center;
         }
         .hero-content {
           grid-row: 2;
-        }
-        .hero-content {
-          padding: clamp(40px, 8vw, 60px) clamp(24px, 5vw, 40px);
+          padding: 48px 24px;
         }
         .hero-image-caption {
-          font-size: 14px;
+          font-size: 15px;
+        }
+        .hero-badges {
+          gap: 8px;
+        }
+        .badge {
+          font-size: 11px;
+          padding: 7px 10px;
         }
 
+        /* — Problema — */
         .problema-grid {
           grid-template-columns: 1fr;
           gap: 40px;
         }
+        /* genograma oculto no mobile — lista de sintomas já conta a história */
         .problema-image {
           display: none;
         }
 
+        /* — Especialização — */
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* — Diferenciais — */
+        .diferenciais-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* — Gessel: imagem ocultada, só texto — */
         #gessel {
           grid-template-columns: 1fr;
         }
@@ -1635,50 +1696,49 @@
           padding: 60px 24px;
         }
 
-        .cards-grid {
-          grid-template-columns: 1fr;
-        }
-        .diferenciais-grid {
-          grid-template-columns: 1fr;
-        }
+        /* — Para quem — */
         .para-quem-grid {
           grid-template-columns: 1fr 1fr;
         }
 
-        .coord-grid {
-          grid-template-columns: 1fr;
-        }
-        .card-coord {
-          grid-template-columns: 1fr;
-        }
-        .coord-photo {
-          display: none;
-        }
-
-        .turma-details {
-          grid-template-columns: 1fr 1fr;
-        }
-        .footer-inner {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-
-        .timeline::before {
-          display: none;
-        }
-        .tl-item {
+        /* — Professor: foto aparece acima do texto, ocupa toda a largura —
+           proporção 16/10 para não dominar demais em telas pequenas       */
+        .coord-layout {
           grid-template-columns: 1fr;
           gap: 0;
         }
-        .tl-item.right .tl-content,
-        .tl-item.left .tl-content {
-          grid-column: 1;
-          text-align: left;
+        .coord-visual {
+          order: -1;
         }
-        .tl-item::before {
+        .coord-photo {
+          aspect-ratio: 16 / 10;
+        }
+        .coord-photo img {
+          object-position: center 10%;
+        }
+        /* caption fica um pouco menor */
+        .coord-photo-caption p {
+          font-size: 14px;
+        }
+        /* texto abaixo ganha padding para respirar */
+        .coord-text {
+          padding: 40px 0 0;
+        }
+        /* esconde a linha de acento vertical — fica estranha sem a foto ao lado */
+        .coord-accent-line {
           display: none;
         }
 
+        /* — Turma/Investimento — */
+        .turma-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .turma-details {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        /* — CTA — */
         .cta-final-actions {
           flex-direction: column;
         }
@@ -1688,19 +1748,10 @@
           justify-content: center;
         }
 
-        .hero-badges {
-          gap: 8px;
-        }
-        .badge {
-          font-size: 11px;
-          padding: 7px 10px;
-        }
-
-        .nav-cta {
-          display: none;
-        }
-        .nav-mobile-cta {
-          display: block;
+        /* — Footer — */
+        .footer-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
         }
       }
 
@@ -1786,7 +1837,12 @@
         <img
           src="images/hero-family.png"
           alt="Supervisão clínica"
-          style="width: 100%; height: 100%; object-fit: cover"
+          style="
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 65% center;
+          "
         />
         <div class="hero-image-overlay">
           <p class="hero-image-caption">
@@ -2272,7 +2328,7 @@
       </div>
     </section>
 
-    <!-- ═══ SOBRE EIRENE & FLT ═══ -->
+    <!-- ═══ SOBRE EIRENE & FLT ═══
     <section id="sobre">
       <div class="container">
         <div class="sobre-header">
@@ -2369,38 +2425,28 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <!-- ═══ COORDENAÇÃO ═══ -->
+    <!-- ═══ PROFESSOR ═══ -->
     <section id="coordenacao">
       <div class="container">
-        <div class="coord-header">
-          <p class="eyebrow reveal">Coordenação Acadêmica</p>
-          <h2
-            class="section-title reveal delay-1"
-            style="color: var(--off-white)"
-          >
-            Corpo docente com autoridade clínica e
-            <em>experiência internacional.</em>
-          </h2>
-          <p class="coord-sub reveal delay-2">
-            A especialização é coordenada por professores-doutores com décadas
-            de atuação na pesquisa e prática clínica sistêmica.
-          </p>
-        </div>
+        <div class="coord-layout">
+          <div class="coord-text">
+            <div class="coord-accent-line reveal"></div>
+            <p class="eyebrow reveal">Professor responsável</p>
+            <h2 class="section-title reveal delay-1">
+              Uma formação conduzida com <em>rigor clínico</em> e profundidade
+              teórica.
+            </h2>
+            <p class="coord-intro reveal delay-2">
+              Do início ao fim, a especialização é conduzida pelo Prof. Dr.
+              Carlos Tadeu Grzybowski — com décadas de prática clínica e
+              formação de terapeutas sistêmicos.
+            </p>
 
-        <div class="coord-grid">
-          <div class="card-coord reveal delay-1">
-            <div class="coord-photo">
-              <img
-                src="images/carlos.jpg"
-                alt="Supervisão clínica"
-                style="width: 100%; height: 100%; object-fit: cover"
-              />
-            </div>
-            <div class="coord-info">
-              <div class="coord-title-label">Coordenação</div>
+            <div class="coord-identity reveal delay-3">
               <div class="coord-name">Prof. Dr. Carlos Tadeu Grzybowski</div>
+              <div class="coord-subtitle">Psicologia Sistêmica</div>
               <div class="coord-credentials">
                 <div class="credential">
                   <div class="credential-dot"></div>
@@ -2419,47 +2465,21 @@
                   Supervisor Clínico EIRENE
                 </div>
               </div>
-              <p class="coord-bio">
-                Décadas de experiência na formação de terapeutas familiares
-                sistêmicos, com sólida trajetória clínica e acadêmica no campo
-                da psicologia sistêmica contemporânea.
-              </p>
             </div>
           </div>
 
-          <div class="card-coord reveal delay-2">
+          <div class="coord-visual reveal-right">
             <div class="coord-photo">
               <img
-                src="images/claus.jpg"
-                alt="Supervisão clínica"
-                style="width: 100%; height: 100%; object-fit: cover"
+                src="images/carlos.jpg"
+                alt="Prof. Dr. Carlos Tadeu Grzybowski"
               />
             </div>
-            <div class="coord-info">
-              <div class="coord-title-label">Coordenação</div>
-              <div class="coord-name">Prof. Dr. Claus Schwambach</div>
-              <div class="coord-credentials">
-                <div class="credential">
-                  <div class="credential-dot"></div>
-                  Doutor em Teologia e Ciências Humanas
-                </div>
-                <div class="credential">
-                  <div class="credential-dot"></div>
-                  Especialista em Terapia Sistêmica
-                </div>
-                <div class="credential">
-                  <div class="credential-dot"></div>
-                  Professor da FLT
-                </div>
-                <div class="credential">
-                  <div class="credential-dot"></div>
-                  Consultor Internacional
-                </div>
-              </div>
-              <p class="coord-bio">
-                Ampla trajetória na interface entre teologia, ciências humanas e
-                psicologia sistêmica. Referência na integração entre
-                espiritualidade, família e prática clínica.
+            <div class="coord-photo-fade"></div>
+            <div class="coord-photo-caption">
+              <p>
+                "Décadas de experiência na formação de terapeutas familiares
+                sistêmicos."
               </p>
             </div>
           </div>
@@ -2550,8 +2570,7 @@
             <div class="bolsa-info">
               <div class="bolsa-badge">Bolsas</div>
               <p class="bolsa-text">
-                5 bolsas de até 30% disponíveis para candidatos elegíveis. Entre
-                em contato para conhecer os critérios.
+                5 bolsas de até 30% disponíveis para candidatos elegíveis.
               </p>
             </div>
 
