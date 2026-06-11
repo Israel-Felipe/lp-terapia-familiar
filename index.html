@@ -284,10 +284,15 @@
         backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(184, 151, 90, 0.15);
         padding: 0 clamp(20px, 5vw, 60px);
-        transition: box-shadow 0.3s;
+        transition:
+          box-shadow 0.3s,
+          transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       }
       nav.scrolled {
         box-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
+      }
+      nav.nav-hidden {
+        transform: translateY(-100%);
       }
 
       .nav-inner {
@@ -304,12 +309,10 @@
         align-items: center;
         gap: 16px;
       }
-      .nav-logo-mark {
-        font-family: var(--font-display);
-        font-size: 22px;
-        font-weight: 600;
-        color: var(--petrol-deep);
-        letter-spacing: -0.02em;
+      .nav-logo-img {
+        height: 50px;
+        width: auto;
+        display: block;
       }
       .nav-logo-sep {
         width: 1px;
@@ -324,6 +327,7 @@
         letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--grey-mid);
+        margin-right: 0px;
       }
 
       .nav-cta {
@@ -1635,6 +1639,12 @@
           display: block;
         }
 
+        .nav-logo-img {
+          height: 40px;
+          width: auto;
+          display: block;
+        }
+
         /* — Hero — */
         #hero {
           grid-template-columns: 1fr;
@@ -1770,7 +1780,11 @@
     <nav id="main-nav">
       <div class="nav-inner">
         <div class="nav-logo">
-          <span class="nav-logo-mark">FLT + EIRENE</span>
+          <img
+            src="images/logos.png"
+            alt="FLT + EIRENE do Brasil"
+            class="nav-logo-img"
+          />
           <div class="nav-logo-sep"></div>
           <span class="nav-logo-sub">Terapia Familiar Sistêmica</span>
         </div>
@@ -1778,12 +1792,6 @@
           href="https://wa.me/5547997950582?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20saber%20mais%20sobre%20a%20especializa%C3%A7%C3%A3o%20em%20Terapia%20Familiar%20Sist%C3%AAmica"
           class="nav-cta"
           >Quero mais informações</a
-        >
-        <a
-          href="https://wa.me/5547997950582?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20saber%20mais%20sobre%20a%20especializa%C3%A7%C3%A3o%20em%20Terapia%20Familiar%20Sist%C3%AAmica"
-          class="nav-mobile-cta btn-primary"
-          style="padding: 10px 18px; font-size: 11px"
-          >Informações</a
         >
       </div>
     </nav>
@@ -2961,10 +2969,27 @@
 
       /* ── Nav scroll effect ── */
       const nav = document.getElementById('main-nav')
+      let lastScrollY = window.scrollY
+
       window.addEventListener(
         'scroll',
         () => {
-          nav.classList.toggle('scrolled', window.scrollY > 40)
+          const currentScrollY = window.scrollY
+
+          nav.classList.toggle('scrolled', currentScrollY > 40)
+
+          if (currentScrollY <= 0) {
+            nav.classList.remove('nav-hidden')
+          } else if (
+            currentScrollY > lastScrollY &&
+            currentScrollY > nav.offsetHeight
+          ) {
+            nav.classList.add('nav-hidden')
+          } else if (currentScrollY < lastScrollY) {
+            nav.classList.remove('nav-hidden')
+          }
+
+          lastScrollY = currentScrollY
         },
         { passive: true },
       )
